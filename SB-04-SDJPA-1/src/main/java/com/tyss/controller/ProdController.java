@@ -200,6 +200,17 @@ public class ProdController {
 
         return product;
     }
+
+	@GetMapping(value = "/content2/{id}", produces = {
+            "application/json",
+            "application/xml"
+    })
+    public Product getProduct(@PathVariable Integer id) {
+
+        Product product = repo.findById(id).orElse(null);
+        return product;
+    }
+	
     
 	
 	
