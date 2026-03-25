@@ -156,6 +156,50 @@ public class ProdController {
         Double total = repo.getTotalPriceSum();
         return total != null ? total : 0.0;
     }
+
+	// Content Type
+    
+    @GetMapping(
+            value = "/content",
+            consumes = {
+                "application/json",
+                "application/xml"
+            },
+            produces = {
+                "application/json",
+                "application/xml"
+            }
+        )
+        public Product contentType(@RequestBody Product product) {
+
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+            System.out.println(product.getPrice());
+
+            return product;
+        }
+    
+    
+    
+    @PostMapping(
+            value = "/content2",
+            consumes = {
+                "application/json",
+                "application/xml"
+            },
+            produces = {
+                "application/json",
+                "application/xml"
+            }
+            )
+    public Product contentType2 (@RequestBody Product product) {
+
+        System.out.println(product.getId());
+        System.out.println(product.getName());
+        System.out.println(product.getPrice());
+
+        return product;
+    }
     
 	
 	
