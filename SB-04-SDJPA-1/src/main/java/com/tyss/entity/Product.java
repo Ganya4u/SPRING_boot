@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@JacksonXmlRootElement(localName = "Product")
 public class Product {
 	
 	    @Id
