@@ -28,5 +28,5 @@ public class Product {
     private Integer id;
 
     private String name;
-    private double price;
+   private Double price;
 }
