@@ -93,4 +93,35 @@ public class ProdController {
         repo.deleteAll();
         return ResponseEntity.ok("All products deleted");
     }
+
+    // Pagination , Sort & Filter
+    
+    @GetMapping("/pagination")
+    public Page<Product> getByPage(@RequestParam int pageNumber) {
+
+        Pageable pageable = PageRequest.of(pageNumber - 1, 2);
+
+        return repo.findAll(pageable);
+    }
+    
+    @GetMapping("/sort")
+    public List<Product> sorting(
+            @RequestParam String sort,
+            @RequestParam(defaultValue = "asc") String dir) {
+
+        if (dir.equalsIgnoreCase("desc")) {
+            return repo.findAll(Sort.by(sort).descending());
+        }
+
+        return repo.findAll(Sort.by(sort).ascending());
+    }
+    
+    
+    @PostMapping("/filter")
+    public List<Product> filterProducts(@RequestBody Product product) {
+
+        Example<Product> example = Example.of(product);
+
+        return repo.findAll(example);
+    }
 }
